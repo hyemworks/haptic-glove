@@ -14,7 +14,42 @@ Computer Art
 
 ***********************************************/
 
+// Define Finger Node
+#define F_THUMB   A0
+#define F_INDEX   A1
+#define F_MIDDLE  A2
+#define F_RING    A3
+#define F_PINKY   A4
 
+// Define Motor Node
+#define M_THUMB_1 13
+
+#define M_INDEX_1 12
+#define M_INDEX_2 11
+
+#define M_MIDDLE_1  10
+#define M_MIDDLE_2  9
+
+#define M_RING_1  8
+#define M_RING_2  7
+
+#define M_PINKY_1 6
+#define M_PINKY_2 5
+
+#define M_PALM_1  4
+#define M_PALM_2  3
+#define M_PALM_3  2
+
+
+// Angle of finger bend
+int a_thumb   = 0;
+int a_index   = 0;
+int a_middle  = 0;
+int a_ring    = 0;
+int a_pinky   = 0;
+
+
+  
 void setup()
 {
   // Set Finger pinmode
@@ -52,34 +87,20 @@ void setup()
 }
 
 
-
-
 void loop()
 {
   // Get data of each finger - Sensor
   getFingerData();
-  printSerial();
+  // Set finger data to json string
+  String fingerDataJSON = createJSON();
+  sendSerial(fingerDataJSON);
+
 
   // Set data of each finger - Vibrator
+  receiveSerial();
+  parseJSON();
+  // play vibration mode
   setFingerData();
-  printSerial();
-  
+
 }
 
-
-// Print the serial
-void printSerial()
-{
-  Serial.print(a_thumb);
-  Serial.print("\t");
-  Serial.print(a_index);
-  Serial.print("\t");
-  Serial.print(a_middle);
-  Serial.print("\t");
-  Serial.print(a_ring);
-  Serial.print("\t");
-  Serial.print(a_pinky);
-  Serial.println("\n---------------------------------------");
-
-  delay(10);
-}
