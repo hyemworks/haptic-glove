@@ -1,5 +1,3 @@
-#include "Arduino_JSON.h"
-
 
 // Get data of each finger - FLEX SENSOR
 void getFingerData()
@@ -15,7 +13,19 @@ void getFingerData()
 
 
 // Set data of each finger - VIBRATOR
-void setFingerData()
+boolean setFingerData(JSONVar tmpObject)
 {
+  int power;
   
+  if((bool)tmpObject["grip"]) power = 180;
+  else if((bool)tmpObject["touch"]) power = 50;
+  else power = 0;
+
+  digitalWrite(12,power);
+  digitalWrite(11,power);
+  digitalWrite(10,power);
+  digitalWrite(9,power);
+  digitalWrite(8,power);
+  
+  return false;
 }

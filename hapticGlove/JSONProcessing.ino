@@ -18,8 +18,27 @@ String createJSON()
 }
 
 
+
 // Parse json data
 void parseJSON()
 {
-  
+  if(JSONComplete)
+  {
+    JSONVar tmpObject = JSON.parse(inputJSON);
+
+    if (JSON.typeof(tmpObject) == "undefined")
+    {
+      Serial.println("Parsing input failed!");
+      return;
+    }
+    
+    if ((const char*)tmpObject["type"]=="collision")
+    {
+      JSONComplete = setFingerData(tmpObject);
+      Serial.println("-------------------------------------------------------------------");
+    }
+    
+  }
+
+  //delay(200);
 }

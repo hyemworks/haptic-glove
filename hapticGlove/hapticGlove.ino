@@ -14,6 +14,8 @@ Computer Art
 
 ***********************************************/
 
+#include <Arduino_JSON.h>
+
 // Define Finger Node
 #define F_THUMB   A0
 #define F_INDEX   A1
@@ -38,6 +40,7 @@ Computer Art
 
 #define M_PALM_1  4
 #define M_PALM_2  3
+// default from begin
 #define M_PALM_3  2
 
 
@@ -48,6 +51,10 @@ int a_middle  = 0;
 int a_ring    = 0;
 int a_pinky   = 0;
 
+
+// JSON
+String inputJSON;
+bool JSONComplete;
 
   
 void setup()
@@ -94,13 +101,12 @@ void loop()
   // Set finger data to json string
   String fingerDataJSON = createJSON();
   sendSerial(fingerDataJSON);
-
+  // -------------------------------------------------- completed 2021-12-16
 
   // Set data of each finger - Vibrator
   receiveSerial();
-  parseJSON();
+  if (JSONComplete) parseJSON();
   // play vibration mode
-  setFingerData();
+  // setFingerData();
 
 }
-
