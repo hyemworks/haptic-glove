@@ -1,0 +1,18 @@
+{
+	"source": "UE",
+	"applications": [
+		{
+			"app_key": "application.generated.ue.arduino_project-15973114.ue4editor.exe",
+			"launch_type": "url",
+			"url": "steam://launch/",
+			"action_manifest_path": "D:/hmyang/School/Grade3/2/physical-computing-and-control/final-arduino-project/arduino-project/arduino_project/Config/SteamVRBindings/steamvr_manifest.json",
+			"strings":
+			{
+				"en_us":
+				{
+					"name": "arduino_project-15973114 [UE Editor]"
+				}
+			}
+		}
+	]
+}
